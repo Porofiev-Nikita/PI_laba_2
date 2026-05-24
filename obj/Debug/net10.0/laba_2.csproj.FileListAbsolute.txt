@@ -1,0 +1,4 @@
+C:\Users\Nik\Desktop\DolgamNET\Piskaev\С#\PI2\laba_2\obj\Debug\net10.0\laba_2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Nik\Desktop\DolgamNET\Piskaev\С#\PI2\laba_2\obj\Debug\net10.0\laba_2.AssemblyInfoInputs.cache
+C:\Users\Nik\Desktop\DolgamNET\Piskaev\С#\PI2\laba_2\obj\Debug\net10.0\laba_2.AssemblyInfo.cs
+C:\Users\Nik\Desktop\DolgamNET\Piskaev\С#\PI2\laba_2\obj\Debug\net10.0\laba_2.csproj.CoreCompileInputs.cache
