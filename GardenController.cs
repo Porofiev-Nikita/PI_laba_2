@@ -1,3 +1,5 @@
+using System.Security.Cryptography.X509Certificates;
+
 public class GardenController
 {
   private static GardenController _instance;
@@ -29,31 +31,53 @@ public class GardenController
     }
   }
   // сюда: добавить, удалить, включить, выключить, список устройств
-  public void Add(IGardenDevice _devices)
+  public void AddDevice(IGardenDevice device)
   {
     // добавить, переписать в норм вид
+    if (device == null) System.Console.WriteLine("Нет значения");
     _devices.Add(device);
-    System.Console.WriteLine("Устройство {0} было добавлено", device.GetName());
   }
-  public void Remove(IGardenDevice _devices)
+  public void Remove(IGardenDevice device)
   {
     // аналогично с добавить
-    _devices.Remove(device);
-    System.Console.WriteLine("Устройство {0} было удалено", device.GetName());
+    if (device != null)
+    {
+      _devices.Remove(device);
+      System.Console.WriteLine("Было удалено устройство: {0}", device.GetName());
+    }
+    else System.Console.WriteLine("Ошибка удаления устройства");
   }
-  public void Get(IGardenDevice _devices)
+  public IGardenDevice GetDevice(string name) => _devices.FirstOrDefault(device => device.GetName() == name);
+
+  public void TurnOn(string name)
   {
+    var Name = GetDevice(name);
+    if (Name != null)
+    {
+      Name.TurnOn();
+      System.Console.WriteLine("Устройство {0}, включено", Name);
+    }
+    else System.Console.WriteLine("Устройство не удалось включить или оно не найдено");
+  }
+  public void TurnOff(string name)
+  {
+    var Name = GetDevice(name);
+    if (Name != null)
+    {
+      Name.TurnOff();
+      System.Console.WriteLine("Устройство {0}, выключено", Name);
+    }
+    else System.Console.WriteLine("Устройство не удалось выключить или оно не найдено");
+
+  }
+  // все устройства?
+  public void AllDevices()
+  {
+    System.Console.WriteLine("Все устройства:");
     foreach (var item in _devices)
     {
-      System.Console.WriteLine(item);
+      System.Console.WriteLine(item.GetInfo());
     }
-  }
-  public void TurnOn(
-
-  )
-  {
-    _devices.Remove(device);
-    System.Console.WriteLine("Устройство {0} было удалено", device.GetName());
   }
   public void SomeBusinessLogic()
   {

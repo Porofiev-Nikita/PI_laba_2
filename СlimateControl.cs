@@ -9,7 +9,7 @@ class ClimateControl : GardenDeviceBase
   }
 
   // тут будут параметры
-  // аналогично прошлым перезапись
+  // аналогично прошлым перезаписать
   public override void Configure(Dictionary<string, object> parameters)
   {
     if (parameters.TryGetValue("Температура", out var temperature)) CurrentTempererature = Convert.ToDouble(temperature);
