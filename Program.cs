@@ -10,23 +10,32 @@ namespace project
       while (!exit)
       {
         // Главное меню
+        // Console.WriteLine("Выберите действие:");
+        // Console.WriteLine("1. Добавить устройство");
+        // Console.WriteLine("2. Управлять устройствами");
+        // Console.WriteLine("3. Настроить автоматизацию");
+        // Console.WriteLine("4. Просмотреть статус системы");
+        // Console.WriteLine("5. Выход");
         Console.WriteLine("Выберите действие:");
         Console.WriteLine("1. Добавить устройство");
         Console.WriteLine("2. Управлять устройствами");
-        Console.WriteLine("3. Настроить автоматизацию");
-        Console.WriteLine("4. Просмотреть статус системы");
-        Console.WriteLine("5. Выход");
+        Console.WriteLine("3. Просмотреть статус системы");
+        Console.WriteLine("4. Выход");
         Console.Write("Ваш выбор: ");
         string choice = Console.ReadLine();
         Console.WriteLine();
 
         switch (choice)
         {
+          // case "1": AddDeviceMenu(controller); break;
+          // case "2": ManageDevicesMenu(controller); break;
+          // case "3": ConfigureAutomation(controller); break;
+          // case "4": ShowSystemStatus(controller); break;
+          // case "5": exit = true; break;
           case "1": AddDeviceMenu(controller); break;
           case "2": ManageDevicesMenu(controller); break;
-          case "3": ConfigureAutomation(controller); break;
-          case "4": ShowSystemStatus(controller); break;
-          case "5": exit = true; break;
+          case "3": ShowSystemStatus(controller); break;
+          case "4": exit = true; break;
           default:
             Console.WriteLine("Неверный выбор. Попробуйте снова.\n");
             break;
@@ -34,7 +43,7 @@ namespace project
       }
     }
 
-    // Меню добавления устройства
+    // Меню устройств
     static void AddDeviceMenu(GardenController controller)
     {
       Console.WriteLine("Выберите тип устройства:");
@@ -60,10 +69,9 @@ namespace project
       Console.Write("Введите название устройства: ");
       string name = Console.ReadLine();
 
-      // Создаём устройство через фабрику
+      // фабрика
       IGardenDevice device = FactoryDevices.CreateDevice(deviceType, name);
 
-      // Запрашиваем специфичные параметры
       Console.Write("Настроить параметры устройства? (да/нет): ");
       string ans = Console.ReadLine()?.ToLower();
       if (ans == "да" || ans == "yes" || ans == "y")
@@ -71,7 +79,7 @@ namespace project
         ConfigureDeviceParams(device, deviceType);
       }
 
-      // Добавляем в контроллер
+      //контроллер
       controller.AddDevice(device);
       Logger.Log("Устройство успешно добавлено в систему.\n");
     }
@@ -101,10 +109,6 @@ namespace project
           };
           parameters.Add("area", area);
 
-          Console.Write("Введите интенсивность полива (л/м²): ");
-          double intensity = double.Parse(Console.ReadLine());
-          parameters.Add("intensity", intensity);
-
           Console.Write("Введите длительность полива (мин): ");
           int duration = int.Parse(Console.ReadLine());
           parameters.Add("duration", duration);
@@ -114,27 +118,18 @@ namespace project
           Console.Write("Введите яркость (0-100%): ");
           int brightness = int.Parse(Console.ReadLine());
           parameters.Add("brightness", brightness);
-
-          Console.Write("Введите цветовую температуру (K): ");
-          int colorTemp = int.Parse(Console.ReadLine());
-          parameters.Add("colorTemp", colorTemp);
           break;
 
         case "climate":
           Console.Write("Введите целевую температуру (°C): ");
           double temp = double.Parse(Console.ReadLine());
           parameters.Add("temperature", temp);
-
-          Console.Write("Введите целевую влажность (%): ");
-          double hum = double.Parse(Console.ReadLine());
-          parameters.Add("humidity", hum);
           break;
 
         case "soilsensor":
           Console.WriteLine("Выберите тип измерения:");
-          Console.WriteLine("1. Только влажность");
-          Console.WriteLine("2. Влажность и температура");
-          Console.WriteLine("3. Влажность, температура и pH");
+          Console.WriteLine("1. Влажность");
+          Console.WriteLine("2. Влажность, температуру");
           Console.Write("Ваш выбор: ");
           int measType = int.Parse(Console.ReadLine());
           parameters.Add("measurementType", measType);
@@ -145,7 +140,7 @@ namespace project
           break;
       }
 
-      device.Configure(parameters);   // Применяем настройки
+      device.Configure(parameters);
     }
 
     // Меню управления устройствами
@@ -164,17 +159,16 @@ namespace project
         Console.WriteLine($"{i + 1}. {devices[i].GetName()} ({devices[i].GetStatus()})");
       }
       Console.Write("Выберите устройство (номер): ");
-      if (!int.TryParse(Console.ReadLine(), out int devIndex) || devIndex < 1 || devIndex > devices.Count)
+      if (!int.TryParse(Console.ReadLine(), out int j) || j < 1 || j > devices.Count)
       {
         Console.WriteLine("Неверный номер.\n");
         return;
       }
 
-      IGardenDevice selected = devices[devIndex - 1];
+      IGardenDevice selected = devices[j - 1];
       DeviceActionMenu(selected, controller);
     }
 
-    // Подменю действий с выбранным устройством
     static void DeviceActionMenu(IGardenDevice device, GardenController controller)
     {
       bool back = false;
@@ -183,6 +177,8 @@ namespace project
         Console.WriteLine($"\nВыберите действие для устройства \"{device.GetName()}\":");
         Console.WriteLine("1. Включить");
         Console.WriteLine("2. Выключить");
+        Console.WriteLine("5. Удалить");
+
         Console.WriteLine("3. Настроить параметры");
         Console.WriteLine("4. Назад");
         Console.Write("Ваш выбор: ");
@@ -201,7 +197,6 @@ namespace project
             Logger.Log($"Устройство \"{device.GetName()}\" выключено.");
             break;
           case "3":
-            // Повторно запрашиваем параметры (тип можно узнать через имя класса)
             string devType = device.GetType().Name switch
             {
               "IrrigationSystem" => "irrigation",
@@ -227,11 +222,11 @@ namespace project
       }
     }
 
-    // Заглушка для настройки автоматизации
-    static void ConfigureAutomation(GardenController controller)
-    {
-      Logger.Log("Настройка автоматизации пока не реализована.\n");
-    }
+
+    // static void ConfigureAutomation(GardenController controller)
+    // {
+    //   Logger.Log("Данная функция не доступна в режиме бетатета");
+    // }
 
     // Отображение общего статуса системы
     static void ShowSystemStatus(GardenController controller)

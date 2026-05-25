@@ -11,7 +11,6 @@ public class LightningSystem : GardenDeviceBase
   {
     if (parameters.TryGetValue("Освещенность", out var illumination)) Illumination = (int)illumination;
     Configuration = parameters;
-    throw new NotImplementedException();
   }
 
   // тут перезапись конфигурации/ override
