@@ -9,7 +9,7 @@ public class LightningSystem : GardenDeviceBase
   // тут будут параметры
   public override void Configure(Dictionary<string, object> parameters)
   {
-    if (parameters.TryGetValue("Освященность", out var illumination)) Illumination = (int)illumination;
+    if (parameters.TryGetValue("Освещенность", out var illumination)) Illumination = (int)illumination;
     Configuration = parameters;
     throw new NotImplementedException();
   }
