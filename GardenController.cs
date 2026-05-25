@@ -37,15 +37,15 @@ public class GardenController
     if (device == null) System.Console.WriteLine("Нет значения");
     _devices.Add(device);
   }
-  public void Remove(IGardenDevice device)
+  public bool Remove(string name)
   {
-    // аналогично с добавить
+    var device = GetDevice(name);
     if (device != null)
     {
       _devices.Remove(device);
-      System.Console.WriteLine("Было удалено устройство: {0}", device.GetName());
+      return true;
     }
-    else System.Console.WriteLine("Ошибка удаления устройства");
+    else return false;
   }
   public IGardenDevice GetDevice(string name) => _devices.FirstOrDefault(device => device.GetName() == name);
 
@@ -71,14 +71,7 @@ public class GardenController
 
   }
   // все устройства?
-  public void AllDevices()
-  {
-    System.Console.WriteLine("Все устройства:");
-    foreach (var item in _devices)
-    {
-      System.Console.WriteLine(item.GetInfo());
-    }
-  }
+  public List<IGardenDevice> AllDevices() => _devices;
   public void SomeBusinessLogic()
   {
     // Логика одиночки

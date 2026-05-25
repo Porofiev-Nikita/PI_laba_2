@@ -3,6 +3,7 @@ public class IrrigationSystem : GardenDeviceBase
 {
   // сделать табло выбора задержки полива
   public int Duration { get; set; } = 5;
+  public string Area { get; private set; } = "Не выбрано";
   public IrrigationSystem(string name) : base(name)
   {
   }
@@ -10,10 +11,11 @@ public class IrrigationSystem : GardenDeviceBase
   public override void Configure(Dictionary<string, object> parameters)
   {
     if (parameters.TryGetValue("Задержка", out var duration)) Duration = (int)duration;
+    if (parameters.TryGetValue("Область", out var area)) Area = area.ToString();
+
     Configuration = parameters;
-    throw new NotImplementedException();
   }
 
-  public override string GetInfo() => $"Система полива, Статус: {Status}, Полив с задержкой в: {Duration} минут";
+  public override string GetInfo() => $"Система полива, Статус: {Status}, Область полива: {Area}, Полив с задержкой в: {Duration} минут";
 
 }

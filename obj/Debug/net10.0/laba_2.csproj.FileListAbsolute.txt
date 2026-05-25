@@ -2,3 +2,14 @@ C:\Users\Nik\Desktop\DolgamNET\Piskaev\С#\PI2\laba_2\obj\Debug\net10.0\laba_2.G
 C:\Users\Nik\Desktop\DolgamNET\Piskaev\С#\PI2\laba_2\obj\Debug\net10.0\laba_2.AssemblyInfoInputs.cache
 C:\Users\Nik\Desktop\DolgamNET\Piskaev\С#\PI2\laba_2\obj\Debug\net10.0\laba_2.AssemblyInfo.cs
 C:\Users\Nik\Desktop\DolgamNET\Piskaev\С#\PI2\laba_2\obj\Debug\net10.0\laba_2.csproj.CoreCompileInputs.cache
+C:\Users\Nik\Desktop\DolgamNET\Piskaev\С#\PI2\laba_2\bin\Debug\net10.0\laba_2.exe
+C:\Users\Nik\Desktop\DolgamNET\Piskaev\С#\PI2\laba_2\bin\Debug\net10.0\laba_2.deps.json
+C:\Users\Nik\Desktop\DolgamNET\Piskaev\С#\PI2\laba_2\bin\Debug\net10.0\laba_2.runtimeconfig.json
+C:\Users\Nik\Desktop\DolgamNET\Piskaev\С#\PI2\laba_2\bin\Debug\net10.0\laba_2.dll
+C:\Users\Nik\Desktop\DolgamNET\Piskaev\С#\PI2\laba_2\bin\Debug\net10.0\laba_2.pdb
+C:\Users\Nik\Desktop\DolgamNET\Piskaev\С#\PI2\laba_2\obj\Debug\net10.0\laba_2.sourcelink.json
+C:\Users\Nik\Desktop\DolgamNET\Piskaev\С#\PI2\laba_2\obj\Debug\net10.0\laba_2.dll
+C:\Users\Nik\Desktop\DolgamNET\Piskaev\С#\PI2\laba_2\obj\Debug\net10.0\refint\laba_2.dll
+C:\Users\Nik\Desktop\DolgamNET\Piskaev\С#\PI2\laba_2\obj\Debug\net10.0\laba_2.pdb
+C:\Users\Nik\Desktop\DolgamNET\Piskaev\С#\PI2\laba_2\obj\Debug\net10.0\laba_2.genruntimeconfig.cache
+C:\Users\Nik\Desktop\DolgamNET\Piskaev\С#\PI2\laba_2\obj\Debug\net10.0\ref\laba_2.dll

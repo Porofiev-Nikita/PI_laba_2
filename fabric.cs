@@ -8,6 +8,7 @@ public static class FactoryDevices
       "lighting" => new LightningSystem(name),
       "climate" => new ClimateControl(name),
       "soilsensor" => new SoilSensor(name),
+      _ => throw new NotImplementedException("Неизвестная ошибка"),
     };
   }
 }
